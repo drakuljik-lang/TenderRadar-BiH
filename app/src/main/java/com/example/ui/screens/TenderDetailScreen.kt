@@ -121,8 +121,8 @@ fun TenderDetailScreen(
             text = {
                 Text(
                     "Ovaj tender je DEMO PODATAK sa simuliranim linkom:\n${tender.sourceUrl}\n\n" +
-                            "U trenutnoj v0.1.1 MVP verziji nije povezan stvarni scraper portala javnih nabavki (ejn.gov.ba). " +
-                            "Pravi izvor bit će dostupan kada se aktivira zvanični backend API."
+                            "Ovaj tender je dio početnih DEMO podataka i simulira strukturu stvarnog tendera. " +
+                            "Pravi tenderi iz e-Nabavki (open.ejn.gov.ba) su takođe dostupni u listi."
                 )
             },
             confirmButton = {

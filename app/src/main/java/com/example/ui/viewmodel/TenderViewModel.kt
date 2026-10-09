@@ -92,8 +92,17 @@ class TenderViewModel(
                 repository.getNotifications(),
                 _filter
             ) { tenders, profile, savedIds, notifications, filterState ->
+                // Ako postoje PRAVI tenderi (isDemo=false), prikaži samo njih.
+                // Ako su svi DEMO, prikaži DEMO (fallback za offline).
+                val hasRealTenders = tenders.any { !it.isDemo }
+                val visibleTenders = if (hasRealTenders) {
+                    tenders.filter { !it.isDemo }
+                } else {
+                    tenders
+                }
+
                 // Compute matches for all tenders
-                val listWithMatches = tenders.map { tender ->
+                val listWithMatches = visibleTenders.map { tender ->
                     val match = MatchScoreCalculator.calculateMatch(tender, profile)
                     val isSaved = savedIds.contains(tender.id)
                     TenderWithMatch(tender, match, isSaved)
