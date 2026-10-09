@@ -2,8 +2,10 @@ package com.example
 
 import android.app.Application
 import com.example.data.local.AppDatabase
+import com.example.data.remote.TenderApiClient
 import com.example.data.repository.DemoTenderRepository
 import com.example.data.repository.TenderRepository
+import com.example.data.repository.TenderSyncRepository
 
 class TenderRadarApplication : Application() {
 
@@ -16,6 +18,11 @@ class TenderRadarApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         database = AppDatabase.getDatabase(this)
-        repository = DemoTenderRepository(database)
+        val local = DemoTenderRepository(database)
+        repository = TenderSyncRepository(
+            local = local,
+            api = TenderApiClient.api,
+            tenderDao = database.tenderDao()
+        )
     }
 }
