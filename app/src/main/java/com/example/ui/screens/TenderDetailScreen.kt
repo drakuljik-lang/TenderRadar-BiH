@@ -180,7 +180,7 @@ fun TenderDetailScreen(
         ) {
             // BANER ZA DEMO REŽIM
             item {
-                DemoBanner()
+                if (tender.isDemo) DemoBanner()
             }
 
             // 1. NAZIV TENDERA, 2. DEMO PODATAK OZNAKA, 3. MATCH SCORE I STATUS

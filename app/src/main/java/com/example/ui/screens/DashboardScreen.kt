@@ -192,8 +192,10 @@ fun DashboardScreen(
         }
 
         // 2. DEMO BANNER & OFFLINE BANNER
-        item {
-            DemoBanner()
+        if (uiState.showDemoBanner) {
+            item {
+                DemoBanner()
+            }
         }
 
         if (uiState.isOffline) {

@@ -53,7 +53,8 @@ data class MainUiState(
     val isAiLoading: Boolean = false,
     val showFilterSheet: Boolean = false,
     val showProfileSheet: Boolean = false,
-    val showPremiumSheet: Boolean = false
+    val showPremiumSheet: Boolean = false,
+    val showDemoBanner: Boolean = true
 )
 
 sealed class Screen(val route: String) {
@@ -165,7 +166,8 @@ class TenderViewModel(
                     isAiLoading = _uiState.value.isAiLoading,
                     showFilterSheet = _uiState.value.showFilterSheet,
                     showProfileSheet = _uiState.value.showProfileSheet,
-                    showPremiumSheet = _uiState.value.showPremiumSheet
+                    showPremiumSheet = _uiState.value.showPremiumSheet,
+                    showDemoBanner = !hasRealTenders
                 )
             }.collect { newState ->
                 _uiState.value = newState

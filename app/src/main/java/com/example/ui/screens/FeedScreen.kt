@@ -247,7 +247,7 @@ fun FeedScreen(
                             }
                         }
                         Spacer(modifier = Modifier.height(6.dp))
-                        DemoBanner()
+                        if (uiState.showDemoBanner) DemoBanner()
                     }
                 }
 
