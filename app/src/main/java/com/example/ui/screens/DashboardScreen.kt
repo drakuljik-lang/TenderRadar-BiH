@@ -102,19 +102,6 @@ fun DashboardScreen(
                                     modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
                                 )
                             }
-                            Spacer(modifier = Modifier.width(6.dp))
-                            Surface(
-                                color = Color(0xFFD97706),
-                                shape = RoundedCornerShape(4.dp)
-                            ) {
-                                Text(
-                                    text = "DEMO NAČIN",
-                                    color = Color.White,
-                                    fontSize = 10.sp,
-                                    fontWeight = FontWeight.ExtraBold,
-                                    modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
-                                )
-                            }
                         }
 
                         Surface(

@@ -232,19 +232,6 @@ fun FeedScreen(
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
 
-                            Surface(
-                                color = Color(0xFFFEF3C7),
-                                border = BorderStroke(1.dp, Color(0xFFFDE68A)),
-                                shape = RoundedCornerShape(4.dp)
-                            ) {
-                                Text(
-                                    text = "DEMO NAČIN",
-                                    color = Color(0xFFB45309),
-                                    fontSize = 10.sp,
-                                    fontWeight = FontWeight.ExtraBold,
-                                    modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
-                                )
-                            }
                         }
                         Spacer(modifier = Modifier.height(6.dp))
                         if (uiState.showDemoBanner) DemoBanner()
