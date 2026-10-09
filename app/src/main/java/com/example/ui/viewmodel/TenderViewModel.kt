@@ -144,7 +144,7 @@ class TenderViewModel(
                 // KPIs - izvedeni iz stvarnog stanja bez fiksnih vrijednosti
                 val kpis = DashboardKpis(
                     totalCount = listWithMatches.size,
-                    matchingCount = listWithMatches.count { it.match.score >= 60 },
+                    matchingCount = listWithMatches.count { it.match.score >= 40 },
                     urgentCount = listWithMatches.count { DeadlineHelper.isUrgent(it.tender) },
                     savedCount = listWithMatches.count { it.isSaved }
                 )
