@@ -2,6 +2,7 @@ package com.example
 
 import android.app.Application
 import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.example.data.local.AppDatabase
@@ -36,24 +37,27 @@ class TenderRadarApplication : Application() {
             tenderDao = database.tenderDao()
         )
 
-        // Automatski sync pri pokretanju
+        // 1. Odmah obriši DEMO notifikacije
         appScope.launch {
-            try { repository.refreshTenders() } catch (_: Exception) {}
+            try {
+                database.notificationDao().deleteAllDemo()
+            } catch (_: Exception) {}
         }
 
-        // Zakazi pozadinski sync svakih 6 sati
-        scheduleBackgroundSync()
-    }
+        // 2. Odmah pokreni sync i generiši prave notifikacije
+        WorkManager.getInstance(this).enqueue(
+            OneTimeWorkRequestBuilder<TenderSyncWorker>().build()
+        )
 
-    private fun scheduleBackgroundSync() {
-        val request = PeriodicWorkRequestBuilder<TenderSyncWorker>(
+        // 3. Zakazi pozadinski sync svakih 6h
+        val periodicRequest = PeriodicWorkRequestBuilder<TenderSyncWorker>(
             6, TimeUnit.HOURS
         ).build()
 
         WorkManager.getInstance(this).enqueueUniquePeriodicWork(
             "tender_sync",
             ExistingPeriodicWorkPolicy.KEEP,
-            request
+            periodicRequest
         )
     }
 }
