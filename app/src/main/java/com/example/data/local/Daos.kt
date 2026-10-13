@@ -76,4 +76,7 @@ interface NotificationDao {
 
     @Query("DELETE FROM notifications WHERE id = :id")
     suspend fun delete(id: String)
+
+    @Query("DELETE FROM notifications WHERE id LIKE 'notif-%'")
+    suspend fun deleteAllDemo()
 }

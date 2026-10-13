@@ -1,15 +1,20 @@
 package com.example
 
 import android.app.Application
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.example.data.local.AppDatabase
 import com.example.data.remote.TenderApiClient
 import com.example.data.repository.DemoTenderRepository
 import com.example.data.repository.TenderRepository
 import com.example.data.repository.TenderSyncRepository
+import com.example.notifications.TenderSyncWorker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import java.util.concurrent.TimeUnit
 
 class TenderRadarApplication : Application() {
 
@@ -31,14 +36,24 @@ class TenderRadarApplication : Application() {
             tenderDao = database.tenderDao()
         )
 
-        // Automatski sync sa e-Nabavke API-ja pri pokretanju aplikacije
+        // Automatski sync pri pokretanju
         appScope.launch {
-            try {
-                repository.refreshTenders()
-            } catch (e: Exception) {
-                // Tiho ignorisati - demo podaci ostaju kao fallback
-                android.util.Log.w("TenderRadar", "Sync failed: ${e.message}")
-            }
+            try { repository.refreshTenders() } catch (_: Exception) {}
         }
+
+        // Zakazi pozadinski sync svakih 6 sati
+        scheduleBackgroundSync()
+    }
+
+    private fun scheduleBackgroundSync() {
+        val request = PeriodicWorkRequestBuilder<TenderSyncWorker>(
+            6, TimeUnit.HOURS
+        ).build()
+
+        WorkManager.getInstance(this).enqueueUniquePeriodicWork(
+            "tender_sync",
+            ExistingPeriodicWorkPolicy.KEEP,
+            request
+        )
     }
 }
