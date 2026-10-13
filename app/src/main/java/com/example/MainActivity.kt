@@ -299,7 +299,8 @@ fun TenderRadarApp(viewModel: TenderViewModel) {
                         onOpenFilterSheet = { viewModel.setFilterSheetVisible(true) },
                         onSelectTender = { viewModel.selectTender(it) },
                         onToggleSave = { viewModel.toggleSave(it) },
-                        onResetFilters = { viewModel.resetFilters() }
+                        onResetFilters = { viewModel.resetFilters() },
+                        onRefresh = { viewModel.refreshTenders() }
                     )
                 }
 
