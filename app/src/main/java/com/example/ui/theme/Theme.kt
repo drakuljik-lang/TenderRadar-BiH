@@ -12,49 +12,73 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
-    primary = CyanAccentLight,
-    onPrimary = NavyDark,
-    primaryContainer = NavyLight,
-    onPrimaryContainer = Color(0xFFD6F5FF),
-    secondary = CyanAccent,
-    onSecondary = NavyDark,
-    secondaryContainer = SlateSecondary,
-    onSecondaryContainer = Color(0xFFE2E8F0),
-    tertiary = Color(0xFF7DD3FC),
-    background = SurfaceDark,
-    onBackground = TextPrimaryDark,
-    surface = CardBackgroundDark,
-    onSurface = TextPrimaryDark,
-    surfaceVariant = Color(0xFF1B2F4A),
-    onSurfaceVariant = TextSecondaryDark,
-    outline = Color(0xFF2C4463),
-    outlineVariant = Color(0xFF1E334D)
+    primary              = LimePrimary,
+    onPrimary            = LimeOnPrimary,
+    primaryContainer     = Color(0xFF2A3313),
+    onPrimaryContainer   = LimePrimaryLight,
+
+    secondary            = LimePrimary,
+    onSecondary          = LimeOnPrimary,
+    secondaryContainer   = Color(0xFF1F2610),
+    onSecondaryContainer = LimePrimaryLight,
+
+    tertiary             = LimePrimaryDark,
+    onTertiary           = LimeOnPrimary,
+
+    background           = BackgroundBlack,
+    onBackground         = TextPrimaryDark,
+
+    surface              = SurfaceElevated,
+    onSurface            = TextPrimaryDark,
+
+    surfaceVariant       = SurfaceVariantDark,
+    onSurfaceVariant     = TextSecondaryDark,
+
+    outline              = OutlineDark,
+    outlineVariant       = Color(0xFF1A1A1A),
+
+    error                = UrgencyRed,
+    onError              = Color.White,
+
+    inverseSurface       = CardWhite,
+    inverseOnSurface     = TextOnWhite,
+    inversePrimary       = LimePrimaryDark
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = NavyPrimary,
-    onPrimary = Color.White,
-    primaryContainer = Color(0xFFDCEAF7),
-    onPrimaryContainer = NavyDark,
-    secondary = CyanAccentDark,
-    onSecondary = Color.White,
-    secondaryContainer = Color(0xFFE0F7FA),
-    onSecondaryContainer = Color(0xFF00363A),
-    tertiary = SlateSecondary,
-    background = SurfaceLight,
-    onBackground = TextPrimaryLight,
-    surface = CardBackgroundLight,
-    onSurface = TextPrimaryLight,
-    surfaceVariant = Color(0xFFEDF2F7),
-    onSurfaceVariant = TextSecondaryLight,
-    outline = Color(0xFFCBD5E1),
-    outlineVariant = Color(0xFFE2E8F0)
+    primary              = Color(0xFF0A0A0A),
+    onPrimary            = Color.White,
+    primaryContainer     = LimePrimary,
+    onPrimaryContainer   = LimeOnPrimary,
+
+    secondary            = LimePrimaryDark,
+    onSecondary          = LimeOnPrimary,
+    secondaryContainer   = Color(0xFFE5FF6B),
+    onSecondaryContainer = Color(0xFF1A1A0A),
+
+    tertiary             = Color(0xFF333333),
+    onTertiary           = Color.White,
+
+    background           = BackgroundLight,
+    onBackground         = TextPrimaryLight,
+
+    surface              = SurfaceLight,
+    onSurface            = TextPrimaryLight,
+
+    surfaceVariant       = Color(0xFFF2F2F2),
+    onSurfaceVariant     = TextSecondaryLight,
+
+    outline              = Color(0xFFE0E0E0),
+    outlineVariant       = Color(0xFFEBEBEB),
+
+    error                = UrgencyRed,
+    onError              = Color.White
 )
 
 @Composable
 fun MyApplicationTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = false, // Use intentional B2B palette by default for brand consistency
+    dynamicColor: Boolean = false, // Isključeno — fiksna brand paleta
     content: @Composable () -> Unit,
 ) {
     val colorScheme = when {
@@ -63,7 +87,7 @@ fun MyApplicationTheme(
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
         darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+        else      -> LightColorScheme
     }
 
     MaterialTheme(

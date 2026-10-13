@@ -2,35 +2,60 @@ package com.example.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// TenderRadar BiH - Professional B2B Navy & Cyan Palette
-val NavyPrimary = Color(0xFF0F3460)
-val NavyDark = Color(0xFF0A192F)
-val NavyLight = Color(0xFF1E3E62)
+// ============================================================
+// TenderRadar BiH — Black & Lime Palette (fintech style)
+// ============================================================
 
-val CyanAccent = Color(0xFF00A8CC)
-val CyanAccentLight = Color(0xFF48CAE4)
-val CyanAccentDark = Color(0xFF007791)
+// PRIMARY ACCENT — Lime / Yellow
+val LimePrimary      = Color(0xFFD4F542)
+val LimePrimaryDark  = Color(0xFFB8E035)
+val LimePrimaryLight = Color(0xFFE5FF6B)
+val LimeOnPrimary    = Color(0xFF0A0A0A)
 
-val SlateSecondary = Color(0xFF334E68)
-val SlateLight = Color(0xFF627D98)
+// Legacy aliases (staro ime -> nova boja) — ne mijenjati nazive
+val CyanAccent      = LimePrimary
+val CyanAccentLight = LimePrimaryLight
+val CyanAccentDark  = LimePrimaryDark
 
-val SurfaceLight = Color(0xFFF7F9FC)
-val CardBackgroundLight = Color(0xFFFFFFFF)
-val TextPrimaryLight = Color(0xFF102A43)
-val TextSecondaryLight = Color(0xFF486581)
-val TextMutedLight = Color(0xFF829AB1)
+// DARK BACKGROUNDS (crna pozadina)
+val BackgroundBlack   = Color(0xFF0A0A0A)
+val SurfaceElevated   = Color(0xFF141414)
+val SurfaceVariantDark= Color(0xFF1F1F1F)
+val OutlineDark       = Color(0xFF2A2A2A)
 
-val SurfaceDark = Color(0xFF0C1624)
-val CardBackgroundDark = Color(0xFF14243B)
-val TextPrimaryDark = Color(0xFFF0F4F8)
-val TextSecondaryDark = Color(0xFFBCCCDC)
-val TextMutedDark = Color(0xFF627D98)
+// Legacy aliases
+val NavyPrimary   = LimePrimary
+val NavyDark      = BackgroundBlack
+val NavyLight     = SurfaceElevated
+val SurfaceDark   = SurfaceElevated
+val CardBackgroundDark = SurfaceVariantDark
 
-// Match Score Status Colors
-val MatchHighGreen = Color(0xFF00875A)
-val MatchGoodCyan = Color(0xFF0082A6)
-val MatchPossibleAmber = Color(0xFFD97706)
-val MatchLowSlate = Color(0xFF64748B)
+// TEXT ON DARK
+val TextPrimaryDark   = Color(0xFFFFFFFF)
+val TextSecondaryDark = Color(0xFFA3A3A3)
+val TextMutedDark     = Color(0xFF6B6B6B)
+val SlateSecondary    = TextSecondaryDark
+val SlateLight        = TextMutedDark
 
-val UrgencyRed = Color(0xFFDC2626)
-val UrgencyOrange = Color(0xFFEA580C)
+// WHITE CARDS (kao KPI kartice na slici)
+val CardWhite             = Color(0xFFFFFFFF)
+val TextOnWhite           = Color(0xFF0A0A0A)
+val TextOnWhiteSecondary  = Color(0xFF525252)
+val CardBackgroundLight   = CardWhite
+
+// LIGHT THEME
+val BackgroundLight   = Color(0xFFFAFAFA)
+val SurfaceLight      = Color(0xFFFFFFFF)
+val TextPrimaryLight  = Color(0xFF0A0A0A)
+val TextSecondaryLight= Color(0xFF525252)
+val TextMutedLight    = Color(0xFF737373)
+
+// MATCH SCORE STATUS
+val MatchHighGreen     = LimePrimary              // 80-100: lime
+val MatchGoodCyan      = Color(0xFF86EFAC)        // 60-79: svijetlozelena
+val MatchPossibleAmber = Color(0xFFFCD34D)        // 40-59: amber
+val MatchLowSlate      = Color(0xFF6B6B6B)        // 0-39: siva
+
+// URGENCY
+val UrgencyRed    = Color(0xFFEF4444)
+val UrgencyOrange = Color(0xFFF97316)
