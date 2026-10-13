@@ -48,10 +48,10 @@ class DemoTenderRepository(
             profileDao.saveProfile(DemoData.defaultCompanyProfile.toEntity())
         }
 
-        val existingNotifs = notificationDao.getAllNotifications().first()
-        if (existingNotifs.isEmpty()) {
-            notificationDao.insertAll(DemoData.sampleNotifications.map { it.toEntity() })
-        }
+        // NAPOMENA: DEMO notifikacije se NE seed-uju automatski.
+        // Prave notifikacije generiše TenderSyncWorker iz stvarnih tendera.
+        // Ako želiš DEMO notifikacije za test, uključi ih ručno preko
+        // DemoData.sampleNotifications u test okruženju.
     }
 
     override fun getAllTenders(): Flow<List<Tender>> {
