@@ -286,9 +286,19 @@ class TenderViewModel(
 
     fun refreshTenders() {
         viewModelScope.launch {
-            _uiState.update { it.copy(isLoading = true) }
-            repository.refreshTenders()
-            _uiState.update { it.copy(isLoading = false) }
+            _uiState.update {
+                it.copy(isLoading = true, errorMessage = null)
+            }
+
+            val result = repository.refreshTenders()
+
+            _uiState.update {
+                it.copy(
+                    isLoading = false,
+                    errorMessage = result.exceptionOrNull()?.localizedMessage
+                        ?: if (result.isSuccess) null else "Osvjezavanje nije uspjelo."
+                )
+            }
         }
     }
 

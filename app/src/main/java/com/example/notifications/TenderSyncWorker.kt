@@ -21,10 +21,13 @@ class TenderSyncWorker(
         val database: AppDatabase = app.database
 
         return try {
-            // 1. Povuci nove tendere sa e-Nabavke API-ja
-            repository.refreshTenders()
+            // 1. Sinhronizacija mora uspjeti prije daljnje obrade.
+            val syncResult = repository.refreshTenders()
+            if (syncResult.isFailure) {
+                return Result.retry()
+            }
 
-            // 2. Obriši stare DEMO notifikacije
+            // 2. Brisi demo notifikacije tek nakon uspjesne sinhronizacije.
             database.notificationDao().deleteAllDemo()
 
             // 3. Generiši prave notifikacije iz tendera

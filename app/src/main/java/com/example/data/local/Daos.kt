@@ -25,6 +25,10 @@ interface TenderDao {
 
     @Query("DELETE FROM tenders")
     suspend fun clearAll()
+
+    // Brisi demo tendere tek nakon uspjesnog preuzimanja stvarnih.
+    @Query("DELETE FROM tenders WHERE isDemo = 1")
+    suspend fun deleteDemoTenders()
 }
 
 @Dao
